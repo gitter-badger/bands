@@ -38,8 +38,8 @@
 
                 <thead>
                     <th width="100" align="left">Date</th>
-                    <th width="300" align="left">Venue</th>
-                    <th width="230" align="left">Location</th>
+                    <th width="250" align="left">Venue</th>
+                    <th width="190" align="left">Location</th>
                     <th width="200" align="left">Tickets</th>
                 </thead>
 
@@ -86,7 +86,7 @@
                     var location = tEvent.formatted_location;
                     var ticketLink = tEvent.ticket_url;
                     var fbStyleTicketLinkHTML = function(innerText) {
-                        var stylesString = 'color: #3B5998; cursor: pointer; text-decoration: none;';
+                        var stylesString = 'color: #3B5998; cursor: pointer; text-decoration: none;font-size: 12px;';
                         if (ticketLink) {
                             return '<a style="'+stylesString+'" href="'+ticketLink+'" target="_blank">'+innerText+'</a>';
                         } else {
@@ -95,8 +95,8 @@
                     };
                     var rsvpLink = 'http://www.bandsintown.com/event/'+tEvent.id+'?app_id=sonsofbill_email_html_generator&artist=Sons+of+Bill';
                     var buttonStyleLinkHTML = function(url, innerText) {
-                        var stylesString = 'background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;';
-                        var stylesStringDisabled = 'background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: #ddd;text-decoration: none;font-family: sans-serif;';
+                        var stylesString = 'background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;font-size: 12px;font-weight:bold;';
+                        var stylesStringDisabled = 'background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: #ddd;text-decoration: none;font-family: sans-serif;font-size: 12px;font-weight:bold;';
                         if (url) {
                             // <a style="background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;" href="'+ticketLink+'" target="_blank">Tickets</a>
                             return '<a style="'+stylesString+'" href="'+url+'" target="_blank">'+innerText+'</a>';
@@ -109,8 +109,8 @@
                     var tdStyles = 'height: 34px;';
                     var rowTemplate = '<tr style="font-family: sans-serif;">'+
                         '<td width="100" style="'+tdStyles+'"><div style="'+divStyles+'">'+fbStyleTicketLinkHTML(date)+'</div></td>'+
-                        '<td width="300" style="'+tdStyles+'"><div style="'+divStyles+'">'+fbStyleTicketLinkHTML(venue)+'</div></td>'+
-                        '<td width="230" style="'+tdStyles+'"><div style="'+divStyles+'">'+fbStyleTicketLinkHTML(location)+'</div></td>'+
+                        '<td width="250" style="'+tdStyles+'"><div style="'+divStyles+'">'+fbStyleTicketLinkHTML(venue)+'</div></td>'+
+                        '<td width="190" style="'+tdStyles+'"><div style="'+divStyles+'">'+fbStyleTicketLinkHTML(location)+'</div></td>'+
                         '<td width="100" style="'+tdStyles+'"><div style="'+divStyles+'">'+buttonStyleLinkHTML(ticketLink, 'Tickets')+'&nbsp;&nbsp;'+buttonStyleLinkHTML(rsvpLink, 'RSVP')+'</div></td>'+
                     '</tr>';
                     $tableBody.append(rowTemplate);
