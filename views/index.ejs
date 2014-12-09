@@ -84,10 +84,10 @@
                     var ticketLink = tEvent.ticket_url;
                     var rsvpLink = 'http://www.bandsintown.com/event/'+tEvent.id+'?app_id=sonsofbill_email_html_generator&artist=Sons+of+Bill';
                     var rowTemplate = '<tr style="font-family: sans-serif;">'+
-                        '<td width="100">'+date+'</td>'+
-                        '<td>'+venue+'</td>'+
-                        '<td>'+location+'</td>'+
-                        '<td><a href="'+ticketLink+'" target="_blank">Tickets</a></td>'+
+                        '<td width="100"><a style="color: #3B5998;cursor: pointer;text-decoration: none;" href="'+ticketLink+'" target="_blank">'+date+'</a></td>'+
+                        '<td><a style="color: #3B5998;cursor: pointer;text-decoration: none;" href="'+ticketLink+'" target="_blank">'+venue+'</a></td>'+
+                        '<td><a style="color: #3B5998;cursor: pointer;text-decoration: none;" href="'+ticketLink+'" target="_blank">'+location+'</a></td>'+
+                        '<td><a style="background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;" href="'+ticketLink+'" target="_blank">Tickets</a></td>'+
                         '<td><a style="background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;" href="'+rsvpLink+'" target="_blank">RSVP</a></td>'+
                     '</tr>';
                     $tableBody.append(rowTemplate);
