@@ -1,0 +1,27 @@
+{
+  "name": "Email Grid Generator Bandsintown.com",
+  "version": "0.0.0",
+  "authors": [
+    "(Clay Stewart <claytonmstewart@gmail.com>)"
+  ],
+  "description": "This is an attempt at a front end that generates the HTML someone would need for an email, so they can copy and paste it into an email html and not rely on javascript generators for facebook.",
+  "main": "solution.html",
+  "keywords": [
+    "email",
+    "html",
+    "bandsintown"
+  ],
+  "license": "MIT",
+  "homepage": "http://clay.codes",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}
