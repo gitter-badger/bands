@@ -1,0 +1,15 @@
+{
+  "name": "email-html-gen-bandsintown-api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "//": "change vv this to test.js",
+    "test": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.5",
+    "ejs": "*",
+    "request": "~2.49.0"
+  }
+}
