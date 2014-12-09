@@ -47,10 +47,13 @@
         <script type="text/javascript" src="/lodash/dist/lodash.min.js"></script>
         <script type="text/javascript">
             var minify = function(str) {return str.replace(/\s/g, '');}
-            var printEmailHtml = function() {return minify( $('#emailhtml').html());}
+            var printEmailHtml = function() {
+                // return minify( $('#emailhtml').html());
+                return $('#emailhtml').html();
+            }
 
             var addEmailHtmlToCopyBox = function(){
-                var emailhtml = printEmailHtml(),
+                var emailhtml = printEmailHtml().trim(),
                     $copyBox = $('#copyme');
                 $copyBox.val(emailhtml);
             };
