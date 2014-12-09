@@ -18,6 +18,8 @@
     </head>
     <body>
 
+        <h1>Bandsintown Email HTML Generator</h1>
+
         <h2>Directions:</h2>
         <ol>
             <li>Select All, and copy all code from box below to clipboard.</li>
@@ -32,13 +34,13 @@
         <!-- need to actually generate all html here -->
         <div id="emailhtml">
             <h2 style="font-family: sans-serif;">Upcoming Shows</h2>
-            <table style="font-family: sans-serif;" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <table style="font-family: sans-serif;" cellspacing="0" cellpadding="0" border="0" >
 
                 <thead>
                     <th width="100" align="left">Date</th>
                     <th width="300" align="left">Venue</th>
                     <th width="230" align="left">Location</th>
-                    <th width="100" align="left">Tickets</th>
+                    <th width="200" align="left">Tickets</th>
                 </thead>
 
                 <tbody></tbody>
@@ -83,13 +85,31 @@
                     var venue = tEvent.venue.name;
                     var location = tEvent.formatted_location;
                     var ticketLink = tEvent.ticket_url;
+                    var fbStyleTicketLinkHTML = function(innerText) {
+                        var stylesString = 'color: #3B5998; cursor: pointer; text-decoration: none;';
+                        if (ticketLink) {
+                            return '<a style="'+stylesString+'" href="'+ticketLink+'" target="_blank">'+innerText+'</a>';
+                        } else {
+                            return '<a style="'+stylesString+'" href="#">'+innerText+'</a>';
+                        }
+                    };
                     var rsvpLink = 'http://www.bandsintown.com/event/'+tEvent.id+'?app_id=sonsofbill_email_html_generator&artist=Sons+of+Bill';
+                    var buttonStyleLinkHTML = function(url, innerText) {
+                        var stylesString = 'background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;';
+                        var stylesStringDisabled = 'background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: #ddd;text-decoration: none;font-family: sans-serif;';
+                        if (url) {
+                            // <a style="background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;" href="'+ticketLink+'" target="_blank">Tickets</a>
+                            return '<a style="'+stylesString+'" href="'+url+'" target="_blank">'+innerText+'</a>';
+                        } else {
+                            return '<a style="'+stylesStringDisabled+'" href="#">'+innerText+'</a>';
+                            // return '';
+                        }
+                    };
                     var rowTemplate = '<tr style="font-family: sans-serif;">'+
-                        '<td width="100"><a style="color: #3B5998;cursor: pointer;text-decoration: none;" href="'+ticketLink+'" target="_blank">'+date+'</a></td>'+
-                        '<td><a style="color: #3B5998;cursor: pointer;text-decoration: none;" href="'+ticketLink+'" target="_blank">'+venue+'</a></td>'+
-                        '<td><a style="color: #3B5998;cursor: pointer;text-decoration: none;" href="'+ticketLink+'" target="_blank">'+location+'</a></td>'+
-                        '<td><a style="background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;" href="'+ticketLink+'" target="_blank">Tickets</a></td>'+
-                        '<td><a style="background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;" href="'+rsvpLink+'" target="_blank">RSVP</a></td>'+
+                        '<td width="100">'+fbStyleTicketLinkHTML(date)+'</td>'+
+                        '<td width="300">'+fbStyleTicketLinkHTML(venue)+'</td>'+
+                        '<td width="230">'+fbStyleTicketLinkHTML(location)+'</td>'+
+                        '<td width="100">'+buttonStyleLinkHTML(ticketLink, 'Tickets')+'&nbsp;&nbsp;'+buttonStyleLinkHTML(rsvpLink, 'RSVP')+'</td>'+
                     '</tr>';
                     $tableBody.append(rowTemplate);
                 });
