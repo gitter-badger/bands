@@ -6,38 +6,88 @@
         <title>Email grid generator for Sons of Bill tour dates</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+            #copyme {
+                width: 500px;
+                height: 200px;
+                border: 1px solid black;
+                resize: none;
+            }
+        </style>
     </head>
     <body>
 
-        <!-- copy this box and paste it into your email html where you want the listing to go -->
+        <h2>Directions:</h2>
+        copy code from this box and paste it into the fanbridge.com html where you want the event listing to go:<br />
         <textarea id="copyme">blah blah</textarea>
+
+        <hr />
+        <h2>Html this should render:</h2>
 
         <!-- need to actually generate all html here -->
         <div id="emailhtml">
             <table>
+
                 <thead>
-                    <th>Print This ... get on the floor</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Location</th>
+                    <th>Tickets</th>
                 </thead>
+
+                <tbody></tbody>
+
             </table>
         </div>
 
 
 
-        <script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/moment/min/moment.min.js"></script>
+        <script type="text/javascript" src="/lodash/dist/lodash.min.js"></script>
         <script type="text/javascript">
-        // var $ = function(id) {return document.getElementById(id);};
-        var minify = function(str) {return str.replace(/\s/g, '');}
-        var printEmailHtml = function() {
-            return minify( $('#emailhtml').html() );
-        }
-        var addEmailHtmlToCopyBox = function(){
-            var emailhtml = printEmailHtml();
-            console.log('emailhtml', emailhtml);
-            var $copyBox = $('#copyme').val();
-        };
-        addEmailHtmlToCopyBox();
+            var minify = function(str) {return str.replace(/\s/g, '');}
+            var printEmailHtml = function() {return minify( $('#emailhtml').html());}
 
-        var json = $.get('/events', );
+            var addEmailHtmlToCopyBox = function(){
+                var emailhtml = printEmailHtml(),
+                    $copyBox = $('#copyme');
+                $copyBox.val(emailhtml);
+            };
+
+            var tourEvents;
+            $.get('/events', function(data) {
+                tourEvents = data;
+                addFormattedTourDate(tourEvents);
+                render(tourEvents);
+                addEmailHtmlToCopyBox();
+            });
+
+            var addFormattedTourDate = function(tourEvents) {
+                _.each(tourEvents, function(tEvent) {
+                    tEvent.tourDateForPrintOut = moment(tEvent.datetime).format('MMM D');
+                });
+            };
+
+            var render = function(tourEvents) {
+                var $tableBody = $('#emailhtml').find('tbody');
+                _.each(tourEvents, function(tEvent) {
+                    var date = tEvent.tourDateForPrintOut;
+                    var venue = tEvent.venue.name;
+                    var location = tEvent.formatted_location;
+                    var ticketLink = tEvent.ticket_url;
+                    var rsvpLink = 'http://www.bandsintown.com/event/'+tEvent.id+'?app_id=sonsofbill_email_html_generator&artist=Sons+of+Bill';
+                    var rowTemplate = '<tr>'+
+                        '<td>'+date+'</td>'+
+                        '<td>'+venue+'</td>'+
+                        '<td>'+location+'</td>'+
+                        '<td><a href="'+ticketLink+'" target="_blank">Tickets</a></td>'+
+                        '<td><a href="'+rsvpLink+'" target="_blank">RSVP</a></td>'+
+                    '</tr>';
+                    $tableBody.append(rowTemplate);
+                });
+            };
+
         </script>
     </body>
 </html>
