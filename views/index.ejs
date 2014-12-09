@@ -105,11 +105,13 @@
                             // return '';
                         }
                     };
+                    var divStyles = 'width: 100%; height: 100%; overflow:hidden;';
+                    var tdStyles = 'height: 34px;';
                     var rowTemplate = '<tr style="font-family: sans-serif;">'+
-                        '<td width="100">'+fbStyleTicketLinkHTML(date)+'</td>'+
-                        '<td width="300">'+fbStyleTicketLinkHTML(venue)+'</td>'+
-                        '<td width="230">'+fbStyleTicketLinkHTML(location)+'</td>'+
-                        '<td width="100">'+buttonStyleLinkHTML(ticketLink, 'Tickets')+'&nbsp;&nbsp;'+buttonStyleLinkHTML(rsvpLink, 'RSVP')+'</td>'+
+                        '<td width="100" style="'+tdStyles+'"><div style="'+divStyles+'">'+fbStyleTicketLinkHTML(date)+'</div></td>'+
+                        '<td width="300" style="'+tdStyles+'"><div style="'+divStyles+'">'+fbStyleTicketLinkHTML(venue)+'</div></td>'+
+                        '<td width="230" style="'+tdStyles+'"><div style="'+divStyles+'">'+fbStyleTicketLinkHTML(location)+'</div></td>'+
+                        '<td width="100" style="'+tdStyles+'"><div style="'+divStyles+'">'+buttonStyleLinkHTML(ticketLink, 'Tickets')+'&nbsp;&nbsp;'+buttonStyleLinkHTML(rsvpLink, 'RSVP')+'</div></td>'+
                     '</tr>';
                     $tableBody.append(rowTemplate);
                 });
