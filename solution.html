@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Email grid generator for Sons of Bill tour dates</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+        <!-- copy this box and paste it into your email html where you want the listing to go -->
+        <textarea id="copyme">blah blah</textarea>
+
+        <!-- need to actually generate all html here -->
+        <div id="emailhtml">
+            <table>
+                <thead>
+                    <th>Print This ... get on the floor</th>
+                </thead>
+            </table>
+        </div>
+
+
+
+        <script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+        // var $ = function(id) {return document.getElementById(id);};
+        var minify = function(str) {return str.replace(/\s/g, '');}
+        var printEmailHtml = function() {
+            return minify( $('#emailhtml').html() );
+        }
+        var addEmailHtmlToCopyBox = function(){
+            var emailhtml = printEmailHtml();
+            console.log('emailhtml', emailhtml);
+            var $copyBox = $('#copyme').val();
+        };
+        addEmailHtmlToCopyBox();
+
+        var json = $.get('/events', );
+        </script>
+    </body>
+</html>
