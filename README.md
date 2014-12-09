@@ -17,3 +17,5 @@ This was helpful for doing a get request with the node server
 http://stackoverflow.com/questions/20304862/nodejs-httpget-to-a-url-with-json-response - install `npm install request --save`
 
 should comb through this for email styles tips: http://24ways.org/2009/rock-solid-html-emails (havent yet)
+
+http://stackoverflow.com/questions/2092696/how-to-fix-height-of-tr
