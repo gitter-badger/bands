@@ -12,21 +12,26 @@
                 height: 200px;
                 border: 1px solid black;
                 resize: none;
+                background: rgb(255, 255, 220);
             }
         </style>
     </head>
     <body>
 
         <h2>Directions:</h2>
-        copy code from this box and paste it into the fanbridge.com html where you want the event listing to go:<br />
-        <textarea id="copyme">blah blah</textarea>
+        <ol>
+            <li>Select All, and copy all code from box below to clipboard.</li>
+            <li>Paste it into the fanbridge.com html email source where you want the event listing to go.  It was at bottom in screencast.</li>
+        </ol>
+        <textarea id="copyme">Loading Events ...</textarea>
 
         <hr />
-        <h2>Html this should render:</h2>
+        <h2>Code above should look like this in an email:</h2>
 
         <!-- need to actually generate all html here -->
         <div id="emailhtml">
-            <table>
+            <h2 style="font-family: sans-serif;">Upcoming Shows</h2>
+            <table style="font-family: sans-serif;">
 
                 <thead>
                     <th>Date</th>
@@ -46,9 +51,7 @@
         <script type="text/javascript" src="/moment/min/moment.min.js"></script>
         <script type="text/javascript" src="/lodash/dist/lodash.min.js"></script>
         <script type="text/javascript">
-            var minify = function(str) {return str.replace(/\s/g, '');}
             var printEmailHtml = function() {
-                // return minify( $('#emailhtml').html());
                 return $('#emailhtml').html();
             }
 
@@ -80,12 +83,12 @@
                     var location = tEvent.formatted_location;
                     var ticketLink = tEvent.ticket_url;
                     var rsvpLink = 'http://www.bandsintown.com/event/'+tEvent.id+'?app_id=sonsofbill_email_html_generator&artist=Sons+of+Bill';
-                    var rowTemplate = '<tr>'+
-                        '<td>'+date+'</td>'+
+                    var rowTemplate = '<tr style="font-family: sans-serif;">'+
+                        '<td width="100">'+date+'</td>'+
                         '<td>'+venue+'</td>'+
                         '<td>'+location+'</td>'+
                         '<td><a href="'+ticketLink+'" target="_blank">Tickets</a></td>'+
-                        '<td><a href="'+rsvpLink+'" target="_blank">RSVP</a></td>'+
+                        '<td><a style="background: #ccc;border: 1px solid #000;display: inline-block;padding: 3px;color: black;text-decoration: none;font-family: sans-serif;" href="'+rsvpLink+'" target="_blank">RSVP</a></td>'+
                     '</tr>';
                     $tableBody.append(rowTemplate);
                 });
