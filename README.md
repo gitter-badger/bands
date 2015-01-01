@@ -6,6 +6,8 @@ This is an attempt at a front end that generates the HTML someone would need for
 
 ---
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/clamstew/bands?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Helpful links:
 http://stackoverflow.com/questions/6209161/extract-the-current-dom-and-print-it-as-a-string-with-styles-intact
 http://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
